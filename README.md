@@ -2,4 +2,7 @@
 
 ## 1 Lab
 
-compile
+compile:
+```bash
+go build lab1.go
+```
