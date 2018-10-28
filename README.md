@@ -1,1 +1,5 @@
-# comp_arch
+# Computer architecture golang labs
+
+## 1 Lab
+
+compile
