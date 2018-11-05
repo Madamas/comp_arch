@@ -40,7 +40,7 @@ func (set *storage)Has(item interface{}) bool {
 func (set *storage)Intersect(input *storage) *storage {
 	intersection := NewSet()
 
-	if(set.Length() > input.Length()) {
+	if(set.Length() <= input.Length()) {
 		for elem := range *set {
 			if(input.Has(elem)) {
 				intersection.Add(elem)
@@ -55,19 +55,34 @@ func (set *storage)Intersect(input *storage) *storage {
 	}
 
 	return intersection
+}
+
+func (set *storage)Difference(input *storage) *storage {
+	difference := NewSet()
+
+	for elem := range *set {
+		if(!input.Has(elem)) {
+			difference.Add(elem)
+		}
+	}
+
+	return difference
 } 
 
 func main() {
 	set1 := NewSet()
 	set2 := NewSet()
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 5; i++ {
 		set1.Add(i)
 	}
 
-	for i:= 5; i < 15; i++ {
+	for i:= 3; i < 7; i++ {
 		set2.Add(i)
 	}
 
-	fmt.Println(set1.Length(),set2.Length(),(set1.Intersect(set2)).Length(), *set1, *set2,*(set1.Intersect(set2)))
+	fmt.Printf("Set1: %v\nLength: %v\n\n", *set1, set1.Length())
+	fmt.Printf("Set1: %v\nLength: %v\n\n", *set2, set2.Length())
+	fmt.Printf("Intersection: %v\nLength: %v\n\n", *(set1.Intersect(set2)), (set1.Intersect(set2)).Length())
+	fmt.Printf("Difference: %v\nLength: %v\n", *(set1.Difference(set2)), (set1.Difference(set2)).Length())
 }
