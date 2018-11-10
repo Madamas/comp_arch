@@ -69,6 +69,22 @@ func (set *storage)Difference(input *storage) *storage {
 	return difference
 }
 
+func (set *storage)Union(input *storage) *storage {
+	union := NewSet()
+
+	for elem := range *set {
+		union.Add(elem)
+	}
+
+	for elem := range *input {
+		if(!union.Has(elem)) {
+			union.Add(elem)
+		}
+	}
+
+	return union
+}
+
 func main() {
 	set1 := NewSet()
 	set2 := NewSet()
@@ -88,5 +104,8 @@ func main() {
 	fmt.Printf("Intersection: %v\nLength: %v\n\n", *intersectResult, intersectResult.Length())
 
 	differenceResult := set1.Difference(set2)
-	fmt.Printf("Difference: %v\nLength: %v\n", *differenceResult, differenceResult.Length())
+	fmt.Printf("Difference: %v\nLength: %v\n\n", *differenceResult, differenceResult.Length())
+
+	unionResult := set1.Union(set2)
+	fmt.Printf("Union: %v\nLength: %v\n\n", *unionResult, unionResult.Length())
 }
