@@ -67,7 +67,7 @@ func (set *storage)Difference(input *storage) *storage {
 	}
 
 	return difference
-} 
+}
 
 func main() {
 	set1 := NewSet()
@@ -82,7 +82,11 @@ func main() {
 	}
 
 	fmt.Printf("Set1: %v\nLength: %v\n\n", *set1, set1.Length())
-	fmt.Printf("Set1: %v\nLength: %v\n\n", *set2, set2.Length())
-	fmt.Printf("Intersection: %v\nLength: %v\n\n", *(set1.Intersect(set2)), (set1.Intersect(set2)).Length())
-	fmt.Printf("Difference: %v\nLength: %v\n", *(set1.Difference(set2)), (set1.Difference(set2)).Length())
+	fmt.Printf("Set2: %v\nLength: %v\n\n", *set2, set2.Length())
+
+	intersectResult := set1.Intersect(set2)
+	fmt.Printf("Intersection: %v\nLength: %v\n\n", *intersectResult, intersectResult.Length())
+
+	differenceResult := set1.Difference(set2)
+	fmt.Printf("Difference: %v\nLength: %v\n", *differenceResult, differenceResult.Length())
 }
