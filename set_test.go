@@ -2,7 +2,7 @@ package set
 
 import "testing"
 
-func benchmarkUnion(b *testing.B) {
+func BenchmarkUnion(b *testing.B) {
 	set1 := NewSet()
 	set2 := NewSet()
 
@@ -19,7 +19,7 @@ func benchmarkUnion(b *testing.B) {
 	}
 }
 
-func benchmarkIntersect(b *testing.B) {
+func BenchmarkIntersect(b *testing.B) {
 	set1 := NewSet()
 	set2 := NewSet()
 
@@ -36,7 +36,7 @@ func benchmarkIntersect(b *testing.B) {
 	}
 }
 
-func benchmarkDifference(b *testing.B) {
+func BenchmarkDifference(b *testing.B) {
 	set1 := NewSet()
 	set2 := NewSet()
 
@@ -53,7 +53,7 @@ func benchmarkDifference(b *testing.B) {
 	}
 }
 
-func benchmarkSet(b *testing.B) {
+func BenchmarkSet(b *testing.B) {
 	set1 := NewSet()
 	set2 := NewSet()
 
@@ -64,11 +64,11 @@ func benchmarkSet(b *testing.B) {
 	for i:= 75; i < 150; i++ {
 		set2.Add(i)
 	}
-	
+
 	for n := 0; n < b.N; n++ {
 		setA := set1.Difference(set2)
 		setB := set2.Difference(set1)
 		union := setA.Union(setB)
-		instersect := set1.Intersect(union)
+		set1.Intersect(union)
 	}
 }
